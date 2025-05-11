@@ -17,7 +17,7 @@ class _PreloadPageState extends State<PreloadPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
 
-                Image.asset('lib/assets/terra.png',
+                Image.asset('assets/terra.png',
                     width: 200,
                 )
 
