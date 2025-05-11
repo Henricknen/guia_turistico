@@ -24,4 +24,8 @@ flutter create .
 
 flutter run
 
+## Comando para instalar as dependências
+
+flutter pub get
+
 
