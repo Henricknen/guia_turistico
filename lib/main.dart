@@ -1,27 +1,30 @@
-import 'package:flutter/material.dart';     // Importando biblioteca 'material'
+import 'package:flutter/material.dart';     // importando biblioteca 'material'
 import 'package:provider/provider.dart';
 import 'src/models/appdata.dart';
-import 'src/pages/home.dart';     // Importação das páginas
+
+import 'src/pages/preload.dart';     // importação das páginas
+import 'src/pages/home.dart';
 
 void main() => runApp(     // 'main' é a função inicial
-  MultiProvider(    // Corrigido para 'MultiProvider'
+  MultiProvider(
     providers: [
-      ChangeNotifierProvider(   // Corrigido para 'ChangeNotifierProvider'
+      ChangeNotifierProvider(
         create: (context) => AppData(),    // 'AppData' como provedor
       )
     ],
-    child: MyApp()    // Corrigido para 'MyApp'
+    child: MyApp()
   )
 );
 
-class MyApp extends StatelessWidget {  // Corrigido para 'MyApp'
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(   // Rotas
+    return MaterialApp(   // rotas
       routes: {
-        '/home': (context) => HomePage()  // Página inicial
+        '/preload': (context) => PreloadPage(),
+        '/home': (context) => HomePage()
       },
-      initialRoute: '/home',
+      initialRoute: '/preload',   // rota inicial
     );
   }
 }
