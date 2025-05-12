@@ -1,18 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';    // importando o pacote 'services'
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import '../models/appdata.dart';
 
 class PreloadPage extends StatefulWidget {
   @override
-  _PreloadPageState createState() => _PreloadPageState();        // método de criação do estado
+  _PreloadPageState createState() => _PreloadPageState();
 }
 
 class _PreloadPageState extends State<PreloadPage> {
   bool loading = true;
 
+  void requestInfo() async {
+    await Future.delayed(Duration(seconds: 1));     // retarda a execução por 1 segundo
+
+    setState(() {
+      loading = true;   // marca o início da requisição
+    });
+
+    bool req = await Provider.of<AppData>(context, listen: false).requestData();      // requisição ao 'provider'
+
+    if (req) {
+      print('Deu Certo!!!');
+      // vai para tela de HOME
+    }
+    
+    setState(() {
+      loading = false;    // finaliza a requisição, marcando 'loading' como false
+    });
+
+  }
+
   @override
   void initState() {
-    super.initState();    
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);    // comando 'SystemChrome.setSystemUIOverlayStyle' permite alterar a cor da 'statusbar'
+    super.initState();      // executa o initState 'global'
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);  // Muda a cor da status bar
+
+    requestInfo();    // chama a função que faz a requisição
   }
 
   @override
@@ -21,41 +46,42 @@ class _PreloadPageState extends State<PreloadPage> {
       appBar: AppBar(
         title: Text('Preload Page'),
       ),
-
       body: Center(
         child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-
-                Image.asset('lib/assets/terra.png',
-                    width: 200,
-                ),
-
-                loading ? Container(    // criando condiçional se 'loading' for true aparcerá o Container com suas informações
-                  margin: EdgeInsets.all(30),
-                  child: Text('Carregando Informações...',
-                    style: TextStyle(
-                      fontSize: 16,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              'lib/assets/terra.png',
+              width: 200,
+            ),
+            loading
+                ? Container(    // exibe "Carregando Informações..." quando loading for true
+                    margin: EdgeInsets.all(30),
+                    child: Text(
+                      'Carregando Informações...',
+                      style: TextStyle(fontSize: 16),
                     ),
-                  ),
-                ) : Container(),    // se 'loading' for false aparecerá o Container vazio
-
-                loading ? CircularProgressIndicator(    // widget que exibe um 'indicador de progresso circular'
-                  strokeWidth: 3,   // é a grossura do indicador
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.green),   //a altera a cor do indicador de progresso
-                ) : Container(),
-
-                !loading ? Container(   // se Container for false apareçe o botão
-                  margin: EdgeInsets.all(30),
-                  child: ElevatedButton(
-                    child: Text('Tentar novamente...'),
-                    onPressed: () {
-                      // ação do botão
-                    },
-                  ),
-                ) : Container(),    // se Container for true o botão não aparecerá
-            ],
-        )
+                  )
+                : Container(),
+            loading
+                ? CircularProgressIndicator(
+                    strokeWidth: 3,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                  )
+                : Container(),
+            !loading
+                ? Container(    // exibe o botão "Tentar novamente..." quando loading for false
+                    margin: EdgeInsets.all(30),
+                    child: ElevatedButton(
+                      child: Text('Tentar novamente...'),
+                      onPressed: () {
+                        requestInfo();    // refaz a requisição ao pressionar o botão
+                      },
+                    ),
+                  )
+                : Container(),
+          ],
+        ),
       ),
     );
   }
