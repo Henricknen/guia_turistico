@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';    // importando o pacote 'services'
 
 class PreloadPage extends StatefulWidget {
   @override
@@ -7,6 +8,12 @@ class PreloadPage extends StatefulWidget {
 
 class _PreloadPageState extends State<PreloadPage> {
   bool loading = true;
+
+  @override
+  void initState() {
+    super.initState();    
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);    // comando 'SystemChrome.setSystemUIOverlayStyle' permite alterar a cor da 'statusbar'
+  }
 
   @override
   Widget build(BuildContext context) {
