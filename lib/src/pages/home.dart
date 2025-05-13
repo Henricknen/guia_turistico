@@ -3,6 +3,13 @@ import 'package:provider/provider.dart';
 import '../models/appdata.dart';
 
 class HomePage extends StatelessWidget {
+
+    TextStyle styles = TextStyle(       // styles variável de estilo
+        fontSize: 15,
+        fontWeight: FontWeight.bold,
+        fontFamily: 'Helvetica Neue'
+    );
+
     @override
     Widget build(BuildContext context) {
         return Consumer<AppData>(       // 'Consumer' escuta as mudanças em `AppData` e reconstrói a tela quando o estado de `AppData` mudar
@@ -11,8 +18,28 @@ class HomePage extends StatelessWidget {
                     title: Text('Home'),
                     backgroundColor: Color(0xFF2E8BF1),
                 ),
+
                 body: Center(
-                    child: Text('Continentes: ${appdata.data.length}'),
+                    child: Column(      // ultilizando 'Column' que permite inserir mais de um elemento
+                        mainAxisAlignment: MainAxisAlignment.center,        // alinha todo o counteudo ao centro da tela
+                            children: <Widget>[
+
+                                Container(      // 'Container' permite inserir um espaçamento  na parte inferior do widget
+                                    margin: EdgeInsets.only(bottom: 30),
+                                    child: Text('Seja Bem vindo(a) ao', style: styles),
+                                ),
+
+                                Image.asset('lib/assets/terra.png',
+                                width: 200
+                                ),
+
+                                Container(      // 'Container' permite inserir um espaçamento na parte superior do widget
+                                    margin: EdgeInsets.only(top: 30),
+                                    child: Text('O melhor Guia de Viagens', style: styles),
+                                ),
+
+                        ],                        
+                    )
                 ),
             )
         );
