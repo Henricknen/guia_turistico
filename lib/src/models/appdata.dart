@@ -17,7 +17,6 @@ class AppData with ChangeNotifier {
     if (res.statusCode == 200) {        // verifica o statusCode da resposta 'res'
       var decodedData = jsonDecode(res.body);       // decodificando o JSON da resposta
       setData(decodedData);     // definindo os dados no array 'data'
-      print(decodedData);       // imprime os dados para ver no terminal
       return true;
     } else {
       return false;     // retorna 'false' caso a requisição não tenha sido bem-sucedida
