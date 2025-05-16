@@ -1,45 +1,30 @@
 import 'package:flutter/material.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  @override
-  final Size preferredSize;
-
-  CustomAppBar({Key? key}) 
-      : preferredSize = Size.fromHeight(60.0),      // defina a altura do appBar
-        super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.white,
-      elevation: 0,
-      centerTitle: false,       // não centraliza o título
-      title: Text(
-        'AppBar Personalizado',
-        style: TextStyle(       // estilizando texto da appbar
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Helvetica Neue'
-        ),
+PreferredSizeWidget CustomAppBar() {
+  return AppBar(
+    backgroundColor: Colors.white,
+    elevation: 0,
+    centerTitle: false,     // evita que o título seje centralizado
+    title: Text(
+      'AppBar Personalizado',
+      style: TextStyle(
+        color: Colors.black,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        fontFamily: 'Helvetica Neue'
       ),
+    ),
 
-      leading: IconButton(
-        icon: Icon(Icons.menu, color: Colors.black, size: 30),
-        onPressed: () {     // ação do botão de menu
-            print('Botão de menu pressionado');
-        },
-      ),
+    leading: IconButton(
+      icon: Icon(Icons.menu, color: Colors.black, size: 30),
+      onPressed: () {}    // ação do botão
+    ),
 
-      actions: <Widget>[        // criando um array de icones
+    actions: <Widget>[   // propriedade 'actions' permite inserir varia coisas
       IconButton(
         icon: Icon(Icons.search, color: Colors.black, size: 30),
-        onPressed: () {
-          print('Botão de busca pressionado');
-        },
+        onPressed: () {}
       )
-      ],
-    )
-  }
+    ],
+  );
 }
-
