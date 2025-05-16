@@ -1,30 +1,51 @@
 import 'package:flutter/material.dart';
 
-PreferredSizeWidget CustomAppBar() {
+PreferredSizeWidget CustomAppBar({
+  String title = '',
+  bool hideSearch = false,
+  bool showDrawer = false,
+  bool showBack = false,
+}) {
+
+  IconButton drawerIcon = IconButton(
+    icon: Icon(Icons.menu, color: Colors.black, size: 30),
+    onPressed: () {},
+  );
+
+  IconButton backIcon = IconButton(
+    icon: Icon(Icons.arrow_back, color: Colors.black, size: 30),
+    onPressed: () {},
+  );
+
+  IconButton leadingButton = drawerIcon;    // 'leadingButton' será por padrão 'drawerIcon'
+
+  if (showBack) {
+    leadingButton = backIcon;
+  }
+
   return AppBar(
     backgroundColor: Colors.white,
     elevation: 0,
-    centerTitle: false,     // evita que o título seje centralizado
+    centerTitle: false,
     title: Text(
-      'AppBar Personalizado',
+      title,
       style: TextStyle(
         color: Colors.black,
         fontSize: 20,
         fontWeight: FontWeight.bold,
-        fontFamily: 'Helvetica Neue'
+        fontFamily: 'Helvetica Neue',
       ),
     ),
 
-    leading: IconButton(
-      icon: Icon(Icons.menu, color: Colors.black, size: 30),
-      onPressed: () {}    // ação do botão
-    ),
+    // Pode ser null — AppBar aceita isso
+    leading: leadingButton,
 
-    actions: <Widget>[   // propriedade 'actions' permite inserir varia coisas
-      IconButton(
-        icon: Icon(Icons.search, color: Colors.black, size: 30),
-        onPressed: () {}
-      )
+    actions: <Widget>[
+      if (!hideSearch)
+        IconButton(
+          icon: Icon(Icons.search, color: Colors.black, size: 30),
+          onPressed: () {},
+        )
     ],
   );
 }

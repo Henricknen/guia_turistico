@@ -7,14 +7,17 @@ class HomePage extends StatelessWidget {
   TextStyle styles = TextStyle(       // estilos de texto
     fontSize: 15,
     fontWeight: FontWeight.bold,
-    fontFamily: 'Helvetica Neue',
+    fontFamily: 'Helvetica Neue',    
   );
 
   @override
   Widget build(BuildContext context) {
     return Consumer<AppData>(  // 'Consumer' escuta as mudanças em `AppData` e reconstrói a tela
       builder: (ctx, appdata, child) => Scaffold(
-        appBar: CustomAppBar(),
+        appBar: CustomAppBar(
+          title: 'Página Home',
+          // showBack: true
+        ),
 
         body: Center(
           child: Column( 

@@ -21,7 +21,7 @@ class _PreloadPageState extends State<PreloadPage> {
     bool req = await Provider.of<AppData>(context, listen: false).requestData();      // requisição ao 'provider'
 
     if (req) {
-      Navigator.pushNamed(context, '/home');    // se a requisição der certo o usuário será direçionando para página 'home', utilizando função 'pushReplacementNamed' para eliminar botão de retorno
+      Navigator.pushReplacementNamed(context, '/home');    // se a requisição der certo o usuário será direçionando para página 'home', utilizando função 'pushReplacementNamed' para eliminar botão de retorno
     } else {
       setState(() {
         loading = false;    // finaliza a requisição, marcando 'loading' como false
