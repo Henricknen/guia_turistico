@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
 
 PreferredSizeWidget CustomAppBar({
+  required GlobalKey<ScaffoldState> scaffoldKey,
+  required BuildContext pageContext,  
   String title = '',
   bool hideSearch = false,
   bool showDrawer = false,
   bool showBack = false,
 }) {
 
+  void searchAction() {
+    Navigator.pushReplacenentNamed(pageContext, '/search');
+  }
+
   IconButton drawerIcon = IconButton(
     icon: Icon(Icons.menu, color: Colors.black, size: 30),
-    onPressed: () {},
+    onPressed: () {
+      scaffoldKey.currentState?.openDrawer();    // abre o 'scaffold' se currentState não for null
+    },
   );
 
   IconButton backIcon = IconButton(
     icon: Icon(Icons.arrow_back, color: Colors.black, size: 30),
-    onPressed: () {},
+    onPressed: () {
+      Navigator.pop(pageContext);
+    },
   );
 
   IconButton leadingButton = drawerIcon;    // 'leadingButton' será por padrão 'drawerIcon'
@@ -37,15 +47,14 @@ PreferredSizeWidget CustomAppBar({
       ),
     ),
 
-    // Pode ser null — AppBar aceita isso
     leading: leadingButton,
 
     actions: <Widget>[
       if (!hideSearch)
         IconButton(
           icon: Icon(Icons.search, color: Colors.black, size: 30),
-          onPressed: () {},
-        )
+          onPressed: searchAction
+        ) : Container()
     ],
   );
 }

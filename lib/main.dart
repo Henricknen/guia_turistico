@@ -4,6 +4,7 @@ import 'src/models/appdata.dart';
 
 import 'src/pages/preload.dart';     // importação das páginas
 import 'src/pages/home.dart';
+import 'src/pages/search.dart';
 
 void main() => runApp(     // 'main' é a função inicial
   MultiProvider(
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(   // rotas
       routes: {
         '/preload': (context) => PreloadPage(),
-        '/home': (context) => HomePage()
+        '/home': (context) => HomePage(),
+        '/search': (context) => SearchPage( )
       },
       initialRoute: '/preload',   // rota inicial
     );
