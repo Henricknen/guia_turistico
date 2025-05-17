@@ -10,7 +10,7 @@ PreferredSizeWidget CustomAppBar({
 }) {
 
   void searchAction() {
-    Navigator.pushReplacenentNamed(pageContext, '/search');
+    Navigator.pushReplacementNamed(pageContext, '/search');
   }
 
   IconButton drawerIcon = IconButton(
@@ -53,8 +53,10 @@ PreferredSizeWidget CustomAppBar({
       if (!hideSearch)
         IconButton(
           icon: Icon(Icons.search, color: Colors.black, size: 30),
-          onPressed: searchAction
-        ) : Container()
+          onPressed: () {
+            Navigator.pushReplacementNamed(pageContext, '/search');
+          },
+        )
     ],
   );
 }

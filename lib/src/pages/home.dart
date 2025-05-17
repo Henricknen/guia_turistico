@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/appdata.dart';
 import '../partials/customappbar.dart';
+import '../partials/customdrawer.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -24,7 +25,7 @@ class HomePage extends StatelessWidget {
           title: 'Página Home'
         ),
 
-        drawer: Drawer(),
+        drawer: CustomDrawer(),
 
         body: Center(
           child: Column( 
@@ -35,7 +36,10 @@ class HomePage extends StatelessWidget {
                 child: Text('Seja Bem-vindo(a) ao', style: styles),
               ),
 
-              Image.asset('lib/assets/terra.png', width: 200),
+              Image.asset('lib/assets/terra.png',
+                width: 200
+              ),
+
               Container(
                 margin: EdgeInsets.only(top: 30),
                 child: Text('O melhor Guia de Viagens', style: styles),
