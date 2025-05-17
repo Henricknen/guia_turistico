@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/appdata.dart';
 import '../partials/customappbar.dart';
+import '../partials/customdrawer.dart';
 
 class SearchPage extends StatelessWidget {
 
@@ -19,7 +20,9 @@ class SearchPage extends StatelessWidget {
           hideSearch: true
         ),
 
-        drawer: Drawer(),
+        drawer: CustomDrawer(
+          pageContext: context
+        ),
 
         body: Center(
           child: Column( 

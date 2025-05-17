@@ -25,7 +25,9 @@ class HomePage extends StatelessWidget {
           title: 'Página Home'
         ),
 
-        drawer: CustomDrawer(),
+        drawer: CustomDrawer(
+          pageContext: context
+        ),
 
         body: Center(
           child: Column( 
