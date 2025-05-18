@@ -24,6 +24,8 @@ class SearchPage extends StatelessWidget {
           pageContext: context
         ),
 
+        backgroundColor: Colors.white,
+
         body: Center(
           child: Column( 
             mainAxisAlignment: MainAxisAlignment.center,    // alinhando o conteúdo ao centro

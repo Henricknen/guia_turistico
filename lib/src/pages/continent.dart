@@ -4,7 +4,7 @@ import '../models/appdata.dart';
 import '../partials/customappbar.dart';
 import '../partials/customdrawer.dart';
 
-class HomePage extends StatelessWidget {
+class ContinentPage extends StatelessWidget {
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();    // chave 'global' que será associada com o 'scaffod'
 
@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
         appBar: CustomAppBar(
           scaffoldKey: _scaffoldKey,
           pageContext: context,
-          title: 'Página Home'
+          title: 'Escolha um continente'
         ),
 
         drawer: CustomDrawer(
@@ -31,26 +31,12 @@ class HomePage extends StatelessWidget {
 
         backgroundColor: Colors.white,
 
-        body: Center(
-          child: Column( 
-            mainAxisAlignment: MainAxisAlignment.center,    // alinhando o conteúdo ao centro
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(bottom: 30),
-                child: Text('Seja Bem-vindo(a) ao', style: styles),
-              ),
-
-              Image.asset('lib/assets/terra.png',
-                width: 200
-              ),
-
-              Container(
-                margin: EdgeInsets.only(top: 30),
-                child: Text('O melhor Guia de Viagens', style: styles),
-              ),
-            ],
-          ),
-        ),
+        body: ListView.builder(
+            itemCount: appdata.data.length,
+            itemBuilder: (context, index) {
+                return Text(appdata.data[index]['name']);
+            }
+        )
       ),
     );
   }
