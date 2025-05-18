@@ -34,7 +34,27 @@ class ContinentPage extends StatelessWidget {
         body: ListView.builder(
             itemCount: appdata.data.length,
             itemBuilder: (context, index) {
-                return Text(appdata.data[index]['name']);
+                // appdata.data[index]['name']
+                return Column(
+                  children: <Widget>[
+                    Row(    // linha será inserido dois itens 'botões'
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,    // 'spaceBetween' insere um espaço entre os botões
+                      children: <Widget>[
+
+                        ElevatedButton(   // botão
+                          child: Text("${appdata.data[index]['name']}) (${appdata.data[index]['countries'].length})"),    // nome do continente e valor que indica quantos país cadastrados nesse continente
+                          onPressed: () {},
+                        ),
+
+                        ElevatedButton(
+                          child: Text('Ver cidades'),
+                          onPressed: () {},                        
+                        ),
+                        
+                      ],
+                    ),
+                  ],
+                );
             }
         )
       ),
