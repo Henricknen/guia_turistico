@@ -33,8 +33,14 @@ class ContinentPage extends StatelessWidget {
 
         body: ListView.builder(
             itemCount: appdata.data.length,
-            itemBuilder: (context, index) {
-                // appdata.data[index]['name']
+            itemBuilder: (context, index) {                
+                var cities = [];
+                for(var country in appdata.data[index]['countries']) {
+                  cities.addAll( country['cities'] );
+                }
+
+
+
                 return Column(
                   children: <Widget>[
                     Row(    // linha será inserido dois itens 'botões'
@@ -42,7 +48,7 @@ class ContinentPage extends StatelessWidget {
                       children: <Widget>[
 
                         ElevatedButton(   // botão
-                          child: Text("${appdata.data[index]['name']}) (${appdata.data[index]['countries'].length})"),    // nome do continente e valor que indica quantos país cadastrados nesse continente
+                          child: Text("${appdata.data[index]['name']}) (${cities.length})"),    // pegando a quantidade de cidades dos continentes
                           onPressed: () {},
                         ),
 
@@ -53,6 +59,24 @@ class ContinentPage extends StatelessWidget {
                         
                       ],
                     ),
+
+                    Container(
+                      height: 130,
+                      margin: EdgeInsets.only(bottom:15),
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: cities.length,
+                        itemBuilder: (cityContext, cityIndex) {
+                          return Container(
+                            width: 130,
+                            height: 130,
+                            color: Colors.red,
+                            margin: EdgeInsets.only(left: 10, right: 10),
+                            child: Text(cities[cityIndex]['name']),
+                          );
+                        },
+                      ),
+                    )
                   ],
                 );
             }
