@@ -23,7 +23,53 @@ class CityBox extends StatelessWidget {     // criando CityBox
                                     color: Colors.grey
                                 ),
                             ),
+                        ),
+
+                        Positioned(     // 'Positioned' permite definir todas as posições espeçificas
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0,
+                            child: ClipRRect(       // widget 'ClipRRect' permite o arredondamento da imagem
+                                borderRadius: BorderRadius.circular(20),
+                                child: Image.network(
+                                    data['places'][0]['img'],       // pegando a imagem de 'data' api
+                                    fit: BoxFit.cover       // cobre toda área disponível
+                                ),
+                            ),
+                        ),
+
+                        Positioned(
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0,
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors:[ Colors.transparent, Colors.black]
+                                    )
+                                ),
+                            ),
+                        ),
+
+                        Positioned(
+                            left: 0,
+                            right: 0,
+                            bottom: 10,
+                            child: Text(
+                                data['name'],
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color:Colors.white,
+                                    fontSize: 14
+                                ),
+                            ),
                         )
+
                     ],
                 ),
             )
