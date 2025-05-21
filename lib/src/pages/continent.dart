@@ -15,6 +15,14 @@ class ContinentPage extends StatelessWidget {
     fontFamily: 'Helvetica Neue',    
   );
 
+  void seeCityAction( continentIndex ) {
+    print( continentIndex );
+  }
+
+  void cityBoxAction(cityData) {
+    print( cityData['name'] );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<AppData>(  // 'Consumer' escuta as mudanças em `AppData` e reconstrói a tela
@@ -48,14 +56,31 @@ class ContinentPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,    // 'spaceBetween' insere um espaço entre os botões
                       children: <Widget>[
 
-                        ElevatedButton(   // botão
-                          child: Text("${appdata.data[index]['name']}) (${cities.length})"),    // pegando a quantidade de cidades dos continentes
-                          onPressed: () {},
+                        Container(
+                          margin: EdgeInsets.only(left:15),
+                          child: Text(    // pega o nome dos continentes e quantidades de cidades que possui
+                            "${appdata.data[index]['name']}) (${cities.length})",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Helvetica Neue'
+                            ),
+                          ),
                         ),
 
                         ElevatedButton(
-                          child: Text('Ver cidades'),
-                          onPressed: () {},                        
+                          child: Text(
+                            'Ver cidades',
+                            style: TextStyle(
+                              fontFamily: 'Helvetica Neue',
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              color:Colors.grey
+                            ),
+                          ),
+                          onPressed: () {
+                            seeCityAction( index );
+                          }
                         ),
                         
                       ],
@@ -70,7 +95,7 @@ class ContinentPage extends StatelessWidget {
                         itemBuilder: (cityContext, cityIndex) {
                           return CityBox(   // retornando o CityBox com informações das cidades
                             data:cities[cityIndex],
-                            onTap: () {}
+                            onTap: cityBoxAction
                           );
                         },
                       ),
