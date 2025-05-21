@@ -35,17 +35,14 @@ class _PreloadPageState extends State<PreloadPage> {
   void initState() {
     super.initState();      // executa o initState 'global'
 
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);  // muda a cor da status bar
-
     requestInfo();    // chama a função que faz a requisição
   }
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);  // muda a cor da status bar
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Preload Page'),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

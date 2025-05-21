@@ -16,9 +16,8 @@ class ContinentPage extends StatelessWidget {
   );
 
   void seeCityAction( context, continentIndex ) {
-    print( continentIndex );
 
-    Navigator.pushNamed(context, '/listcity', arguments: continentIndex);
+    Navigator.pushNamed(context, '/listcity', arguments: continentIndex);   // redirçiona o usuário para página 'listcity' enviando o 'contexto' e 'argumentos'
   }
 
   void cityBoxAction(cityData) {
