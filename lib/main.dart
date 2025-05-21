@@ -6,6 +6,7 @@ import 'src/pages/preload.dart';     // importação das páginas
 import 'src/pages/home.dart';
 import 'src/pages/search.dart';
 import 'src/pages/continent.dart';
+import 'src/pages/listcity.dart';
 
 void main() => runApp(     // 'main' é a função inicial
   MultiProvider(
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomePage(),
         '/search': (context) => SearchPage(),
         '/continent': (context) => ContinentPage(),
+        '/listcity': (context) => ListCityPage(),
       },
       initialRoute: '/preload',   // rota inicial
     );

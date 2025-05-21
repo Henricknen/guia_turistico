@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 PreferredSizeWidget CustomAppBar({
   required GlobalKey<ScaffoldState> scaffoldKey,
@@ -34,6 +35,8 @@ PreferredSizeWidget CustomAppBar({
   }
 
   return AppBar(
+    systemOverlayStyle: SystemUiOverlayStyle.light,
+    // bringhtness: Brightness.light,
     backgroundColor: Colors.white,
     elevation: 0,
     centerTitle: false,
