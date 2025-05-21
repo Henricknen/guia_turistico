@@ -88,7 +88,7 @@ class ContinentPage extends StatelessWidget {
                     ),
 
                     Container(
-                      height: 130,
+                      height: 150,
                       margin: EdgeInsets.only(bottom:15),
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,

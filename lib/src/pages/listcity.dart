@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../models/appdata.dart';
 import '../partials/customappbar.dart';
 import '../partials/customdrawer.dart';
+import '../partials/citybox.dart';
 
 class ListCityPage extends StatelessWidget {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();      // chave 'global' que será associada com o 'scaffold'
@@ -12,6 +13,10 @@ class ListCityPage extends StatelessWidget {
     fontWeight: FontWeight.bold,
     fontFamily: 'Helvetica Neue',
   );
+
+  void cityBoxAction(cityData) {
+    print( cityData['name'] );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,32 +32,34 @@ class ListCityPage extends StatelessWidget {
 
     return Consumer<AppData>(       // 'Consumer' escuta as mudanças em `AppData` e reconstrói a tela
       builder: (ctx, appdata, child) {
-        if (continentIndex < 0 || continentIndex >= appdata.data.length) {        // valida se o índice está dentro dos limites da lista
-          return Scaffold(
-            appBar: AppBar(title: Text('Erro')),
-            body: Center(child: Text('Índice de continente inválido.')),
-          );
+        var cities = [];    // array de cidades
+        for(var country in appdata.data[continentIndex]['countries']) {   // fazendo um loop nos países
+          cities.addAll( country['cities'] );   // pegando as cidades dos países e 'inserindo' no array cities
         }
-
-        final String continentName = appdata.data[continentIndex]['name'] as String;        // pega o nome do continente
 
         return Scaffold(
           key: _scaffoldKey,
           appBar: CustomAppBar(
             scaffoldKey: _scaffoldKey,
             pageContext: context,
-            title: continentName,       // título do appbar com nome do continente
+            title: "${appdata.data[continentIndex]['name']} (${cities.length} cidades)",
             showBack: true,     // mostra o botão de 'voltar'
           ),
           drawer: CustomDrawer(
             pageContext: context,
           ),
           backgroundColor: Colors.white,
-          body: Center(
-            child: Text('...'),     // corpo da tela
-          ),
+          body: GridView.count(
+            crossAxisCount: 3,    // utilizando 'crossAxisCount' para adiçionar 3 colunas
+            children: List.generate(cities.length, (index) {
+              return CityBox(
+                data: cities[index],
+                onTap: cityBoxAction,
+              );
+            }),
+          )
         );
-      },
+      }      
     );
   }
 }

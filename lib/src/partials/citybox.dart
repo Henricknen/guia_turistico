@@ -11,7 +11,7 @@ class CityBox extends StatelessWidget {     // criando CityBox
     @override
     Widget build(BuildContext context) {
         return Container(
-            margin: EdgeInsets.only(left:10, right:10),
+            margin: EdgeInsets.all(10),
             child: GestureDetector(     // widget 'GestureDetector' é um botão invisível que permite inserir o que quiser
                 onTap: () {
                     onTap?.call(data);      // chama a função 'onTap' passada para o widget, se ela não for nula, enviando 'data' como argumento 'ex: informações da cidade'
