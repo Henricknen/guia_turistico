@@ -21,7 +21,7 @@ class ContinentPage extends StatelessWidget {
   }
 
   void cityBoxAction(pageContext, cityData) {
-    Navigator.pushNamed(pageContext, '/city', arguments: cityData)
+    Navigator.pushNamed(pageContext, '/city', arguments: cityData);
   }
 
   @override

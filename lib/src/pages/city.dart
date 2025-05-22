@@ -16,26 +16,41 @@ class CityPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> cityData = ModalRoute.of(context).settings.arguments;       // variável 'cityData' reçebe os 'arguments'
+    Map<String, dynamic> cityData = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;       // variável 'cityData' reçebe os 'arguments'
+
+    // Map<String, dynamic> cityData = ModalRoute.of(context).settings.arguments;
+
+    final double  statusBarHeight = MediaQuery.of(context).padding.top;     // praticamente é a alturar do appbar
 
     return Consumer<AppData>(
       builder: (ctx, appdata, child) => Scaffold(
         key: _scaffoldKey,
-        appBar: CustomAppBar(
-          scaffoldKey: _scaffoldKey,
-          pageContext: context,
-          title: 'Tela Cidade'
-        ),
-
         drawer: CustomDrawer(
           pageContext: context
         ),
 
         backgroundColor: Colors.white,
+        body:  Stack(
+            children: <Widget>[
 
-        body: Center(
-          child: Text('...')
-        ),
+                Container(
+                    height: 250,
+                    decoration: BoxDecoration(
+                        color: Colors.red
+                    ),
+                ),
+
+                Container(
+                    height: 50,
+                    margin: EdgeInsets.only(top: statusBarHeight),                    
+                    child: IconButton(
+                        icon: Icon(Icons.arrow_back, color: Colors.white),
+                        onPressed: () {},
+                    ),
+                )
+
+            ],
+        )
       ),
     );
   }
