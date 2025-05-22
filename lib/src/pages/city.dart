@@ -47,7 +47,25 @@ class CityPage extends StatelessWidget {
                         icon: Icon(Icons.arrow_back, color: Colors.white),
                         onPressed: () {},
                     ),
-                )
+                ),
+
+                ListView(
+                  physics: ClampingScrollPhysics(),    // define o 'limite' do scroll
+                  padding: EdgeInsets.zero,     // remove o 'padding'
+                  children: <Widget>[
+
+                    Container(
+                      margin: EdgeInsets.only(top:220),
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(20)
+                      ),
+                      child: Container(
+                          height: 1000,
+                      ),
+                    )
+                  ],
+                ),
 
             ],
         )
