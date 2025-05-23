@@ -42,7 +42,7 @@ class CityPage extends StatelessWidget {
                   height: 250,
                   child: Image.network(
                     cityData['places'][0]['img'],   // pegando a imagem de 'cityData'
-                    fit: BoxFit.cover,
+                    fit: BoxFit.cover,    // cobre a área disponível do container
                   ),
                 ),
 
@@ -62,21 +62,57 @@ class CityPage extends StatelessWidget {
                         children: <Widget>[
 
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Text(cityData['name'], style: TextStyle(
-                                fontFamily: 'Helvetica Neue',
-                                fontSize: 19,
-                                fontWeight: FontWeight.bold
-                              )),
-                              Text('Estrelinhas'),
 
-                              Column(
-                                children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.all(15),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    
+                                    Container(
+                                      margin: EdgeInsets.only(bottom:5),
+                                      child: Text(cityData['name'], style: TextStyle(
+                                        fontFamily: 'Helvetica Neue',
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold
+                                      )),
+                                    ),
+                                    
+                                    Row(
+                                      children: <Widget>[
 
-                                ],
+                                        Icon(Icons.star, color: Colors.blue, size: 16),     // icone de estrela
+                                        Icon(Icons.star, color: Colors.blue, size: 16),       // com cor e tamanho definido
+                                        Icon(Icons.star, color: Colors.blue, size: 16),
+                                        Icon(Icons.star, color: Colors.blue, size: 16),
+                                        Icon(Icons.star, color: Colors.grey, size: 16),
+
+                                        Container(
+                                          margin: EdgeInsets.only(left:5),
+                                          child: Text('4.2', style: TextStyle(
+                                            fontFamily: 'Helvetica Neue',
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.bold,
+                                            colors: Colors.blue
+                                          )),
+                                        )
+
+                                      ],
+                                    )
+
+                                  ],
+                                ),
                               ),
 
-                              Text('...')
+                              Container(
+                                margin: EdgeInsets.all(10),
+                                child: IconButton(
+                                  icon: Icon(Icons.favorite_border, color: Colors.red),    // icone de coração
+                                  onPressed:() {},
+                                ),
+                              )
 
                             ],
                           )
