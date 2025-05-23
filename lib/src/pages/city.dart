@@ -24,6 +24,16 @@ class CityPage extends StatelessWidget {
 
     final double  statusBarHeight = MediaQuery.of(context).padding.top;     // praticamente é a alturar do appbar
 
+  var starRate = double.parse(cityData['review']).floor();      // arrendondando a média 'starRate' pra baixo
+    var stars = [];   // array 'stars'
+    for( var i = 0; i < 5; i++) {   // fazendo loop para preencher o array stars cinco vezes, true ou false
+      if(i < starRate) {    // verificando média
+        stars.add( true );
+      } else {
+        stars.add( false );
+      }
+    }
+
     return Consumer<AppData>(
       builder: (ctx, appdata, child) => Scaffold(
         key: _scaffoldKey,
@@ -83,19 +93,19 @@ class CityPage extends StatelessWidget {
                                     Row(
                                       children: <Widget>[
 
-                                        Icon(Icons.star, color: Colors.blue, size: 16),     // icone de estrela
-                                        Icon(Icons.star, color: Colors.blue, size: 16),       // com cor e tamanho definido
-                                        Icon(Icons.star, color: Colors.blue, size: 16),
-                                        Icon(Icons.star, color: Colors.blue, size: 16),
-                                        Icon(Icons.star, color: Colors.grey, size: 16),
+                                        Icon(Icons.star, color: stars[0] ? Colors.blue : Colors.grey, size: 16),     // icone de estrela
+                                        Icon(Icons.star, color: stars[1] ? Colors.blue : Colors.grey, size: 16),       // com cor e tamanho definido
+                                        Icon(Icons.star, color: stars[2] ? Colors.blue : Colors.grey, size: 16),          // verificandos se 'stars' for 'true' a cor será blue se for 'false' será grey
+                                        Icon(Icons.star, color: stars[3] ? Colors.blue : Colors.grey, size: 16),
+                                        Icon(Icons.star, color: stars[4] ? Colors.blue : Colors.grey, size: 16),
 
                                         Container(
                                           margin: EdgeInsets.only(left:5),
-                                          child: Text('4.2', style: TextStyle(
+                                           child: Text(cityData['review'], style: TextStyle(   // 'cityData['review']' exibe a nota real dos países
                                             fontFamily: 'Helvetica Neue',
                                             fontSize: 11,
                                             fontWeight: FontWeight.bold,
-                                            colors: Colors.blue
+                                            color: Colors.blue
                                           )),
                                         )
 
