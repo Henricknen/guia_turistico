@@ -14,11 +14,13 @@ class CityPage extends StatelessWidget {
     fontFamily: 'Helvetica Neue',    
   );
 
+  void backButtonAction(BuildContext pageContext) {
+    Navigator.pop(pageContext);
+  }
+
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> cityData = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;       // variável 'cityData' reçebe os 'arguments'
-
-    // Map<String, dynamic> cityData = ModalRoute.of(context).settings.arguments;
 
     final double  statusBarHeight = MediaQuery.of(context).padding.top;     // praticamente é a alturar do appbar
 
@@ -33,20 +35,15 @@ class CityPage extends StatelessWidget {
         body:  Stack(
             children: <Widget>[
 
-                Container(
-                    height: 250,
-                    decoration: BoxDecoration(
-                        color: Colors.red
-                    ),
-                ),
-
-                Container(
-                    height: 50,
-                    margin: EdgeInsets.only(top: statusBarHeight),                    
-                    child: IconButton(
-                        icon: Icon(Icons.arrow_back, color: Colors.white),
-                        onPressed: () {},
-                    ),
+                Positioned(   // utilizando 'Positioned' para pocionar a imagem
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: 250,
+                  child: Image.network(
+                    cityData['places'][0]['img'],   // pegando a imagem de 'cityData'
+                    fit: BoxFit.cover,
+                  ),
                 ),
 
                 ListView(
@@ -57,14 +54,49 @@ class CityPage extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(top:220),
                       decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(20)
                       ),
-                      child: Container(
-                          height: 1000,
+
+                      child: Column(
+                        children: <Widget>[
+
+                          Row(
+                            children: <Widget>[
+                              Text(cityData['name'], style: TextStyle(
+                                fontFamily: 'Helvetica Neue',
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold
+                              )),
+                              Text('Estrelinhas'),
+
+                              Column(
+                                children: <Widget>[
+
+                                ],
+                              ),
+
+                              Text('...')
+
+                            ],
+                          )
+
+                        ],
                       ),
                     )
                   ],
+                ),
+
+                
+                Container(
+                    height: 50,
+                    margin: EdgeInsets.only(top: statusBarHeight),                    
+                    child: IconButton(
+                        icon: Icon(Icons.arrow_back, color: Colors.white),
+                        onPressed: () {
+                          backButtonAction(context);
+                        },
+                    ),
                 ),
 
             ],
