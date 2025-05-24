@@ -101,7 +101,7 @@ class CityPage extends StatelessWidget {
 
                                         Container(
                                           margin: EdgeInsets.only(left:5),
-                                           child: Text(cityData['review'], style: TextStyle(   // 'cityData['review']' exibe a nota real dos países
+                                           child: Text(cityData['review'], style: TextStyle(   // 'cityData['review']' exibe a nota real das cidades
                                             fontFamily: 'Helvetica Neue',
                                             fontSize: 11,
                                             fontWeight: FontWeight.bold,
@@ -125,6 +125,34 @@ class CityPage extends StatelessWidget {
                               )
 
                             ],
+                          ),
+
+                          Container(
+                            margin: EdgeInsets.only(
+                              top: 0,
+                              left: 15,
+                              right: 15,
+                              bottom: 10
+                            ),
+                            child: Text(cityData['description'], style: TextStyle(
+                              fontFamily: 'Helvetica Neue',
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+                            )),
+                          ),
+
+                          Divider(
+                            thickness: 1,
+                          ),
+
+                          Container(
+                            margin: EdgeInsets.all(10),
+                            child: Text('PRINCIPAIS PONTOS TURÍSTICOS', style: TextStyle(
+                              fontFamily: 'Helvetica Neue',
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold
+                            )),
                           )
 
                         ],
