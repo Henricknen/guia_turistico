@@ -5,6 +5,21 @@ import 'dart:convert';      // para usar o 'jsonDecode'
 
 class AppData with ChangeNotifier {
   var data = [];        // array de informações
+  var favorites = [];     // variável, array 'favorites' salvará os nomes das cidades marcadas como favoritas
+
+  bool hasFavorite(cityName) {    // função reçebe um nome de uma cidade e verifica se esse nome existe na lista de 'favorites'
+    return favorites.contains(cityName);
+  }
+
+  bool favorite(cityName) {   // função 'remove' ou 'adiçiona' uma cidade de favorites
+    if(this.hasFavorite(cityName)) {
+      favorites.remove(cityName);   // remove
+      return false;
+    } else {
+      favorites.add(cityName);    // adiçiona
+      return true;
+    }
+  }
 
   void setData(newData) {       // 'setData' preenche as informações no array
     data = newData;

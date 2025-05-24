@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/appdata.dart';
-import '../partials/customappbar.dart';
 import '../partials/customdrawer.dart';
 
-class CityPage extends StatelessWidget {
+class CityPage extends StatefulWidget {   // transformando o widget em um 'StateFulWidget'
+  @override
+  _CityPage createState() => _CityPage();
+}
+
+class _CityPage extends State<CityPage> {
+  bool heart = false;   // boolean do coração
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
@@ -36,7 +41,11 @@ class CityPage extends StatelessWidget {
     }
 
     return Consumer<AppData>(
-      builder: (ctx, appdata, child) => Scaffold(
+      builder: (ctx, appdata, child) {
+
+        heart = appdata.hasFavorite(cityData['name']);
+
+        return Scaffold(
         key: _scaffoldKey,
         drawer: CustomDrawer(
           pageContext: context
@@ -120,8 +129,14 @@ class CityPage extends StatelessWidget {
                               Container(
                                 margin: EdgeInsets.all(10),
                                 child: IconButton(
-                                  icon: Icon(Icons.favorite_border, color: Colors.red),    // icone de coração
-                                  onPressed:() {},
+                                  icon: Icon(heart ? Icons.favorite : Icons.favorite_border, color: Colors.red),    // icone de coração
+                                  onPressed: () {
+
+                                    setState(() {   // ao clicar no coração será dado um 'setState' no coração, que o removerá o adiçionará ao favorite
+                                      appdata.favorite(cityData['name']);
+                                    }); 
+
+                                  },
                                 ),
                               )
 
@@ -230,8 +245,9 @@ class CityPage extends StatelessWidget {
                 ),
 
             ],
-        )
-      ),
+        ),
+      );
+      }
     );
   }
 }
