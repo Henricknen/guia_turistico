@@ -161,13 +161,51 @@ class CityPage extends StatelessWidget {
                             shrinkWrap: true,   // 'shrinkWrap' renderiza os quadrados dentro do gridview
                             physics: NeverScrollableScrollPhysics(),    // função 'NeverScrollableScrollPhysics' desabilita o scroll
                             crossAxisCount: 2,    // 'crossAxisCount' define dois itens por linha
-                            children: List.generate(cityData['places']. length * 5, (index) {   // 'children' será um 'array gerado'
+                            childAspectRatio: 10 / 11,
+                            children: List.generate(cityData['places']. length, (index) {   // 'children' será um 'array gerado'
 
                               return Container(
-                                width: 100,
-                                height: 100,
-                                margin: EdgeInsets.all(10),
-                                decoration: BoxDecoration(color: Colors.red),
+                                child: Column(
+                                  children: <Widget>[
+
+                                    Expanded(   // Expanded diminui os itens do container de acordo com o texto e área disponível
+                                      child: AspectRatio(
+                                        aspectRatio: 1 / 1,
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(20),    // arredondando a borda
+                                          child: Image.network(
+                                            cityData['places'] [index]['img'],     // pega a imagem de cityData
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+
+                                    Container(
+                                      margin: EdgeInsets.only(top:5),
+                                      child: Text(
+                                        cityData['places'][index]['name'],   // pega o nome do local
+                                        style: TextStyle(
+                                          fontFamily: 'Helvetica Neue',
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black
+                                        ),
+                                      ),
+                                    ),
+
+                                    Container(
+                                      margin: EdgeInsets.only(top:10, bottom:15),
+                                      child: Text('Ponto Turístico', style: TextStyle(
+                                          fontFamily: 'Helvetica Neue',
+                                          fontSize: 12,
+                                          color: Colors.grey
+                                      )),
+                                    )
+
+                                    
+                                  ],
+                                ),
                               );
 
                             }) 
