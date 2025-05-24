@@ -23,6 +23,7 @@ class CityPage extends StatelessWidget {
     Map<String, dynamic> cityData = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;       // variável 'cityData' reçebe os 'arguments'
 
     final double  statusBarHeight = MediaQuery.of(context).padding.top;     // praticamente é a alturar do appbar
+    final double footerHeight = MediaQuery.of(context).padding.bottom;
 
   var starRate = double.parse(cityData['review']).floor();      // arrendondando a média 'starRate' pra baixo
     var stars = [];   // array 'stars'
@@ -153,6 +154,23 @@ class CityPage extends StatelessWidget {
                               fontSize: 12,
                               fontWeight: FontWeight.bold
                             )),
+                          ),
+
+                          GridView.count(   // 'gridview' mostra os pontos turisticos
+                            padding: EdgeInsets.only(bottom: footerHeight),
+                            shrinkWrap: true,   // 'shrinkWrap' renderiza os quadrados dentro do gridview
+                            physics: NeverScrollableScrollPhysics(),    // função 'NeverScrollableScrollPhysics' desabilita o scroll
+                            crossAxisCount: 2,    // 'crossAxisCount' define dois itens por linha
+                            children: List.generate(cityData['places']. length * 5, (index) {   // 'children' será um 'array gerado'
+
+                              return Container(
+                                width: 100,
+                                height: 100,
+                                margin: EdgeInsets.all(10),
+                                decoration: BoxDecoration(color: Colors.red),
+                              );
+
+                            }) 
                           )
 
                         ],
