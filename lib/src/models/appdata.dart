@@ -7,6 +7,27 @@ class AppData with ChangeNotifier {
   var data = [];        // array de informações
   var favorites = [];     // variável, array 'favorites' salvará os nomes das cidades marcadas como favoritas
 
+  List searchCity(text) {   // função 'searchCity' retorna u list
+    List result = [];
+
+    text = text.trim().toLowerCase();   // trantando o texto digitado pelo usuário, utilizando 'trim' para remover 'espaços', e deixanto todo minúsculo
+    if(text == '') {    // verificação de seguraça, se text estiver vazio
+      return result;      // result que estará vazio será retornado
+    }
+
+    for(var continents in data) {
+      for(var country in continents['countries']) {   // dando loop nos continetes pegando os países
+        for(var city in country['cities']) {    // dando loop nos países pegando as cidades
+          if(city['name'].toLowerCase().contains(text)) {
+            result.add(city);   // adiçionando a cidade na lista 'result'
+          }
+        }
+      }
+    }
+
+    return result;
+  }
+
   bool hasFavorite(cityName) {    // função reçebe um nome de uma cidade e verifica se esse nome existe na lista de 'favorites'
     return favorites.contains(cityName);
   }
