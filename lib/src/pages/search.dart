@@ -61,16 +61,16 @@ class _SearchPageState extends State<SearchPage> {      // extendendo classe 'Se
 
               Expanded(
                 child: GridView.count(   // o 'GridView' armazenará o resultado da busca
-                crossAxisCount: 2,
-                children: List.generate(list.length, (index) {
-                  return CityBox(
-                    data: list[index],
-                    onTap: (cityData) {
-                      Navigator.pushNamed(context, '/city', arguments: cityData);
-                    },
-                  );
-                }),
-              )
+                  crossAxisCount: 2,
+                  children: List.generate(list.length, (index) {
+                    return CityBox(
+                      data: list[index],
+                      onTap: (cityData) {
+                        Navigator.pushNamed(context, '/city', arguments: cityData);   // envia o usuário para a cidade escolhida
+                      },
+                    );
+                  }),
+                )
               )
 
             ],

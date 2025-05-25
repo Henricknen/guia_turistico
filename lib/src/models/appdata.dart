@@ -7,6 +7,19 @@ class AppData with ChangeNotifier {
   var data = [];        // array de informações
   var favorites = [];     // variável, array 'favorites' salvará os nomes das cidades marcadas como favoritas
 
+  List favoritesCities() {    // função retorna a lista de cidade favoritas
+    List result = [];
+
+    for(var favorite in favorites) {    // percorrendo a lista de 'favorites' para pegar as cidades favoritas
+      List foundCities = this.searchCity(favorite);
+      if(foundCities.length > 0) {
+        result.add( foundCities [0]);   // se encotrar alguma cidade favorita será 'armazenada' em result
+      }
+    }
+
+    return result;
+  }
+
   List searchCity(text) {   // função 'searchCity' retorna u list
     List result = [];
 
