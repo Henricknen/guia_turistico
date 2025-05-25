@@ -3,8 +3,10 @@ import 'package:provider/provider.dart';
 import '../models/appdata.dart';
 import '../partials/customappbar.dart';
 import '../partials/customdrawer.dart';
+import '../partials/citybox.dart';
 
 class SearchPage extends StatelessWidget {
+  var list = [];
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();    // chave 'global' que será associada com o 'scaffod'
 
@@ -26,16 +28,35 @@ class SearchPage extends StatelessWidget {
 
         backgroundColor: Colors.white,
 
-        body: Center(
-          child: Column( 
-            mainAxisAlignment: MainAxisAlignment.center,    // alinhando o conteúdo ao centro
+        body: Column(
             children: <Widget>[
               
-              Text('Página de Busca...')
+              Container(
+                margin: EdgeInsets.all(10),
+                child: TextField(   // campo de digitação
+                  decoration: InputDecoration(
+                    hintText: 'Digite o nome de uma cidade',
+                    border: OutlineInputBorder(),
+                    suffixIcon: Icon(Icons.search, size: 32)
+                  ),
+                ),
+              ),
+
+              GridView.count(   // o 'GridView' armazenará o resultado da busca
+                crossAxisCount: 2,
+                shrinkWrap:  true,
+                children: List.generate(list.length, (index) {
+                  return CityBox(
+                    data:list[index],
+                    onTap: (cityData) {
+
+                    },
+                  );
+                }),
+              )
 
             ],
           ),
-        ),
       ),
     );
   }
